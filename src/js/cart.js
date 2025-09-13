@@ -1,4 +1,5 @@
 import { getLocalStorage } from "/js/utils.mjs";
+import updateCartCount from "./cart-count.js";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -26,10 +27,11 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <p class="cart-card__price">${item.FinalPrice}</p>
 </li>`;
 
   return newItem;
 }
 
 renderCartContents();
+updateCartCount();
