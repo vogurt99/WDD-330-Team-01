@@ -9,19 +9,7 @@ export default class ProductList {
 
   async init() {
     const list = await this.dataSource.getData();
-    const filteredList = this.filterProducts(list);
-    this.renderList(filteredList);
-  }
-
-  filterProducts(products) {
-    // Filter products that have corresponding detail pages
-    // Based on the product_pages directory listing:
-    // marmot-ajax-3.html (Id: 880RR)
-    // northface-talus-4.html (Id: 985RF)
-    // northface-alpine-3.html (Id: 985PR)
-    // cedar-ridge-rimrock-2.html (Id: 344YJ)
-    const productIdsWithDetailPages = ['880RR', '985RF', '985PR', '344YJ'];
-    return products.filter(product => productIdsWithDetailPages.includes(product.Id));
+    this.renderList(list);
   }
 
   renderList(list) {
