@@ -28,11 +28,10 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(template);
   if (clear) {
     parentElement.innerHTML = '';
   }
-
-  const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
