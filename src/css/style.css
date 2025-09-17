@@ -256,6 +256,24 @@ button {
   grid-column: 3;
 }
 
+/* Style newsletter */
+#newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px;
+  padding: 15px;
+  border: 1px solid var(--light-grey);
+}
+
+#newsletter h2 {
+  text-align: center;
+}
+
+#newsletter input {
+  padding: 2px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -270,9 +288,14 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+
+  #newsletter {
+    padding: 2em 15em 2em 15em;
+  }
 }
 
 footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+

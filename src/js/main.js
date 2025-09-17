@@ -1,5 +1,6 @@
 import ProductData from './ProductData.mjs';
 import ProductList from './ProductList.mjs';
+import ThankYouDisplay from './newsletter.mjs';
 import { qs } from './utils.mjs';
 import updateCartCount from './cart-count.js';
 
@@ -9,3 +10,4 @@ const productList = new ProductList('tents', dataSource, listElement);
 
 productList.init();
 updateCartCount();
+ThankYouDisplay();
