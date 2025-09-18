@@ -116,6 +116,19 @@ button {
 
 /* End utility classes */
 
+/* Category List Styling */
+.category-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.category-list li {
+  flex: 1;
+  text-align: center;
+}
+
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
