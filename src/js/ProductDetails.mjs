@@ -35,18 +35,18 @@ export default class ProductDetails {
 
   buildProductDetailsTemplate(product) {
     return `
-      <h3>${product.Brand.Name}</h3>
-      <h2 class="product-card__name">${product.Name}</h2>
-      <img
-        class="product-card__image"
-        src="${product.Image.replace("../", "/")}"
-        alt="Image of ${product.Name}"
-      />
-      <p class="product-card__price">${product.FinalPrice}</p>
-      <p class="product__color">${product.Colors[0].ColorName}</p>
-      <p class="product__description">${product.DescriptionHtmlSimple}</p>
-      <div class="product-detail__add-to-cart">
-        <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-      </div>`;
+    <h3>${product.Brand.Name}</h3>
+    <h2 class="product-card__name">${product.Name}</h2>
+    <img
+      class="product-card__image"
+      src="${product.Images?.PrimaryLarge || '/images/placeholder.png'}"
+      alt="Image of ${product.Name}"
+    />
+    <p class="product-card__price">$${product.FinalPrice}</p>
+    <p class="product__color">${product.Colors[0]?.ColorName || ''}</p>
+    <p class="product__description">${product.DescriptionHtmlSimple}</p>
+    <div class="product-detail__add-to-cart">
+      <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+    </div>`;
   }
 }

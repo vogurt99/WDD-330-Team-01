@@ -7,10 +7,16 @@ export default class ProductList {
     this.listElement = listElement;
   }
 
+  // async init() {
+  //   const list = await this.dataSource.getData(this.category);
+  //   this.renderList(list);
+  // }
+
   async init() {
-    const list = await this.dataSource.getData();
-    this.renderList(list);
-  }
+  this.updateTitle();
+  const list = await this.dataSource.getData(this.category);
+  this.renderList(list);
+}
 
   renderList(list) {
     renderListWithTemplate(this.buildProductCardTemplate, this.listElement, list, 'beforeend', true);
@@ -18,14 +24,21 @@ export default class ProductList {
 
   buildProductCardTemplate(product) {
     return `<li class="product-card">
-      <a href="../product_pages/index.html?productid=${product.Id}">
-        <img
-          src="${product.Image.replace('../images/', 'images/')}"
-          alt="Image of ${product.Name}"
-        />
-        <h3 class="card__name">${product.Name}</h3>
-        <p class="product-card__price">$${product.FinalPrice}</p>
-      </a>
-    </li>`;
+    <a href="../product_pages/index.html?productid=${product.Id}">
+      <img
+        src="${product.Images?.PrimaryMedium || '/images/placeholder.png'}"
+        alt="Image of ${product.Name}"
+      />
+      <h3 class="card__name">${product.Name}</h3>
+      <p class="product-card__price">$${product.FinalPrice}</p>
+    </a>
+  </li>`;
+  }
+
+  updateTitle() {
+    const titleElement = document.querySelector('.products h2');
+    if (titleElement) {
+      titleElement.textContent = `Top Products: ${this.category.charAt(0).toUpperCase() + this.category.slice(1)}`;
+    }
   }
 }
