@@ -9,7 +9,8 @@ const dataSource = new ProductData('tents');
 const listElement = qs('.product-list');
 const productList = new ProductList('tents', dataSource, listElement);
 
-loadHeaderFooter();
+loadHeaderFooter().then(() => {
+    updateCartCount();
+});
 productList.init();
-updateCartCount();
 ThankYouDisplay();

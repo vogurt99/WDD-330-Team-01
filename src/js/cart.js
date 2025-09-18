@@ -29,12 +29,21 @@
 
 // renderCartContents();
 
-import ShoppingCart from './ShoppingCart.mjs';
-import { getLocalStorage, qs } from './utils.mjs';
+import ShoppingCart from "./ShoppingCart.mjs";
+import { getLocalStorage, qs, loadHeaderFooter } from "./utils.mjs";
+import updateCartCount from "./cart-count.js";
 
-const cartItems = getLocalStorage('so-cart') || [];
+loadHeaderFooter().then(() => {
+  updateCartCount();
+});
 
-const listElement = qs('.product-list');
+const cartItems = getLocalStorage("so-cart") || [];
+const listElement = qs(".product-list");
 
 const cart = new ShoppingCart(cartItems, listElement);
-cart.init();
+
+if (cartItems.length === 0) {
+  listElement.innerHTML = "<li>Your cart is empty.</li>";
+} else {
+  cart.init();
+}
