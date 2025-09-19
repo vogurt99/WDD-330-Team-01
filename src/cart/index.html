@@ -53,21 +53,26 @@
 
       <template id="cart">
         <ul class="product-list">
-          <li class="cart-card divider">
+          <li class="cart-card">
             <a href="#" class="cart-card__image">
               <img src="" alt="" />
             </a>
-            <a href="#">
+            <div class="cart-card__details">
               <h2 class="card__name"></h2>
-            </a>
-            <p class="cart-card__color"></p>
-            <p class="cart-card__quantity"></p>
-            <p class="cart-card__price"></p>
+              <p class="cart-card__color"></p>
+            </div>
+            <div class="cart-card__actions">
+              <p class="cart-card__quantity"></p>
+              <p class="cart-card__price"></p>
+            </div>
           </li>
         </ul>
       </template>
 
       <ul class="product-list"></ul>
+      <div class="cart-footer hide">
+        <p class="cart-total">Total: </p>
+      </div>
     </section>
   </main>
 
