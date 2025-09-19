@@ -1,4 +1,4 @@
-import { renderListWithTemplate, qs } from './utils.mjs';
+import { renderListWithTemplate, qs, getLocalStorage } from './utils.mjs';
 
 export default class ShoppingCart {
   constructor(cartData, listElement) {
@@ -18,22 +18,45 @@ export default class ShoppingCart {
     const template = qs('#cart').content.cloneNode(true);
     const li = template.querySelector('li');
 
-    const link = li.querySelector('a');
+    const imageLink = li.querySelector('.cart-card__image');
     const img = li.querySelector('img');
-    const name = li.querySelector('.card__name');
-    const color = li.querySelector('.cart-card__color');
-    const qty = li.querySelector('.cart-card__quantity');
-    const price = li.querySelector('.cart-card__price');
+    const detailsElement = li.querySelector('.cart-card__details');
+    const nameElement = detailsElement.querySelector('.card__name');
+    const colorElement = detailsElement.querySelector('.cart-card__color');
 
-    link.href = `../product_pages/index.html?productid=${item.Id}`;
-    img.src = item.Image;
+    const actionsElement = li.querySelector('.cart-card__actions');
+    const qtyElement = actionsElement.querySelector('.cart-card__quantity');
+    const priceElement = actionsElement.querySelector('.cart-card__price');
 
+    imageLink.href = `../product_pages/index.html?productid=${item.Id}`;
+    img.src = item.Images?.PrimarySmall;
     img.alt = `Image of ${item.Name}`;
-    name.textContent = item.Name;
-    color.textContent = item.Colors?.[0] ?? '';
-    qty.textContent = `qty: ${item.Quantity}`;
-    price.textContent = `$${item.FinalPrice}`;
+
+    nameElement.textContent = item.Name;
+    colorElement.textContent = item.Colors?.[0]?.ColorName ?? '';
+    const quantity = item.Quantity || 1;
+    qtyElement.textContent = `qty: ${quantity}`;
+    priceElement.textContent = `${item.FinalPrice}`;
 
     return li.outerHTML;
   }
+
+  getCartTotal() {
+    return this.cartData.reduce(
+      (total, item) => {
+        const quantity = item.Quantity || 1;
+        return total + parseFloat(item.FinalPrice) * parseInt(quantity, 10)
+      },
+      0
+    );
+  }
+}
+
+export function updateCartCount() {
+    const cartItems = getLocalStorage("so-cart") || [];
+    const count = cartItems.reduce((total, item) => total + (item.Quantity || 1), 0);
+    const cartCountElement = qs(".cart-count");
+    if (cartCountElement) {
+        cartCountElement.textContent = count;
+    }
 }

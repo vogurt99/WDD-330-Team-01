@@ -18,7 +18,12 @@ export default class ProductData {
     return data.Result;
   }
   async findProductById(id) {
-    const product = await fetch(`${baseURL}products/${id}`);
-    return product.json();
+    const response = await fetch(`${baseURL}product/${id}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data.Result;
+    } else {
+      throw new Error("Bad Response");
+    }
   }
 }

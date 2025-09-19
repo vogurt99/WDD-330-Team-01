@@ -31,7 +31,7 @@
 
 import ShoppingCart from "./ShoppingCart.mjs";
 import { getLocalStorage, qs, loadHeaderFooter } from "./utils.mjs";
-import updateCartCount from "./cart-count.js";
+import { updateCartCount } from "./ShoppingCart.mjs";
 
 loadHeaderFooter().then(() => {
   updateCartCount();
@@ -46,4 +46,7 @@ if (cartItems.length === 0) {
   listElement.innerHTML = "<li>Your cart is empty.</li>";
 } else {
   cart.init();
+  const total = cart.getCartTotal();
+  qs(".cart-total").innerHTML += `$${total.toFixed(2)}`;
+  qs(".cart-footer").classList.remove("hide");
 }
