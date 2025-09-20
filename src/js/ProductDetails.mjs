@@ -10,13 +10,13 @@ export default class ProductDetails {
   async init() {
     try {
       this.product = await this.dataSource.findProductById(this.productId);
-      if (this.product && this.product.Id) { // Check for a valid product
-        await this.renderProductDetails(this.product); // await here
+      if (this.product && this.product.Id) {
+        await this.renderProductDetails(this.product);
+        this.updateBreadcrumb();
         document
           .getElementById("addToCart")
           .addEventListener("click", this.addProductToCart.bind(this));
       } else {
-        // Handle case where product is not found or is invalid
         console.error("Product not found or invalid product data.");
       }
     } catch (error) {
@@ -29,7 +29,7 @@ export default class ProductDetails {
     if (!cart) {
       cart = [];
     }
-    // Check if product is already in cart
+    
     const existingProduct = cart.find(item => item.Id === this.product.Id);
     if (existingProduct) {
       existingProduct.Quantity++;
@@ -40,10 +40,10 @@ export default class ProductDetails {
     setLocalStorage("so-cart", cart);
   }
 
-  async renderProductDetails(product) { // async here
+  async renderProductDetails(product) {
     const productDetailsElement = document.querySelector(".product-detail");
     if (productDetailsElement) {
-      productDetailsElement.innerHTML = await this.buildProductDetailsTemplate(product); // await here
+      productDetailsElement.innerHTML = await this.buildProductDetailsTemplate(product);
     }
   }
 
@@ -63,5 +63,13 @@ export default class ProductDetails {
       <div class="product-detail__add-to-cart">
         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
       </div>`;
+  }
+
+  updateBreadcrumb() {
+    const breadcrumbElement = document.querySelector('.breadcrumb');
+    if (breadcrumbElement && this.product) {
+      const categoryName = this.product.Category.charAt(0).toUpperCase() + this.product.Category.slice(1);
+      breadcrumbElement.textContent = `${categoryName}`;
+    }
   }
 }

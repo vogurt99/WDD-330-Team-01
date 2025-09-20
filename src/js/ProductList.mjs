@@ -10,6 +10,7 @@ export default class ProductList {
   async init() {
     const list = await this.dataSource.getData(this.category);
     this.renderList(list);
+    this.updateBreadcrumb(list.length);
   }
 
   renderList(list) {
@@ -26,5 +27,14 @@ export default class ProductList {
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
     </li>`;
+  }
+
+  updateBreadcrumb(count) {
+    const breadcrumbElement = document.querySelector('.breadcrumb');
+    if (breadcrumbElement) {
+      const categoryName =
+        this.category.charAt(0).toUpperCase() + this.category.slice(1);
+      breadcrumbElement.textContent = `${categoryName} → (${count} items)`;
+    }
   }
 }
