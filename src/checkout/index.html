@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="UTF-8" />
-  <base href="/" />
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Outside | Checkout</title>
+  <title>Sleep Outside | Cart</title>
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 
@@ -13,74 +13,81 @@
   <header class="divider" id="main-header">
   </header>
 
-  <main class="checkout-container">
-    <h2>Checkout</h2>
+  <div class="breadcrumb"></div>
 
-    <form id="checkoutForm" class="checkout-form">
-      <h3>Customer Information</h3>
+  <main class="divider">
+    <section class="checkout-container">
+      <h2>Checkout</h2>
 
-      <div>
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required />
-      </div>
+      <form name="checkout" class="checkout-form" novalidate>
+        <h3>Customer Information</h3>
 
-      <div>
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required />
-      </div>
+        <div>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" required />
+        </div>
 
-      <h3>Address</h3>
+        <div>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" required />
+        </div>
 
-      <div>
-        <label for="street">Street Address</label>
-        <input type="text" id="street" name="street" required />
-      </div>
+        <h3>Address</h3>
 
-      <div>
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" required />
-      </div>
+        <div>
+          <label for="street">Street Address</label>
+          <input type="text" id="street" name="street" required />
+        </div>
 
-      <div>
-        <label for="state">State</label>
-        <input type="text" id="state" name="state" required />
-      </div>
+        <div>
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+        </div>
 
-      <div>
-        <label for="zip">Zip Code</label>
-        <input type="text" id="zip" name="zip" required />
-      </div>
+        <div>
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" required />
+        </div>
 
-      <h3>Payment Information</h3>
+        <div>
+          <label for="zip">Zip Code</label>
+          <input type="text" id="zip" name="zip" required />
+        </div>
 
-      <div>
-        <label for="cardNumber">Credit Card Number</label>
-        <input type="text" id="cardNumber" name="cardNumber" required />
-      </div>
+        <h3>Payment Information</h3>
 
-      <div>
-        <label for="expDate">Expiration Date</label>
-        <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required />
-      </div>
+        <div>
+          <label for="cardNumber">Credit Card Number</label>
+          <input type="text" id="cardNumber" name="cardNumber" required />
+        </div>
 
-      <div>
-        <label for="cvv">Security Code</label>
-        <input type="text" id="cvv" name="cvv" required />
-      </div>
+        <div>
+          <label for="expiration">Expiration Date</label>
+          <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required />
+        </div>
 
-      <button type="submit" class="checkout-submit">Place Order</button>
-    </form>
+        <div>
+          <label for="code">Security Code</label>
+          <input type="text" id="code" name="code" required />
+        </div>
 
-    <aside class="checkout-summary">
-      <h3>Order Summary</h3>
-      <p>Subtotal: ₱0.00</p>
-      <p>Tax: ₱0.00</p>
-      <p>Shipping: ₱0.00</p>
-      <p><strong>Total: ₱0.00</strong></p>
-    </aside>
+        <button type="submit" class="checkout-submit">Place Order</button>
+      </form>
+
+      <aside class="checkout-summary">
+        <h3>Order Summary</h3>
+
+        <div>Items: <span id="num-items">0</span></div>
+        <div>Subtotal: <span id="subtotal">₱0.00</span></div>
+        <div>Tax: <span id="tax">₱0.00</span></div>
+        <div>Shipping: <span id="shipping">₱0.00</span></div>
+        <div><strong>Total: <span id="total">₱0.00</span></strong></div>
+      </aside>
+    </section>
   </main>
 
   <footer id="main-footer"></footer>
+
   <script src="/js/checkout.js" type="module"></script>
 </body>
 
