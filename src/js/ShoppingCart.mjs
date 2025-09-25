@@ -29,14 +29,14 @@ export default class ShoppingCart {
     const priceElement = actionsElement.querySelector('.cart-card__price');
 
     imageLink.href = `../product_pages/index.html?productid=${item.Id}`;
-    img.src = item.Images?.PrimarySmall;
+    img.src = item.Image || "";
     img.alt = `Image of ${item.Name}`;
 
     nameElement.textContent = item.Name;
-    colorElement.textContent = item.Colors?.[0]?.ColorName ?? '';
+    colorElement.textContent = item.Color || "";
     const quantity = item.Quantity || 1;
     qtyElement.textContent = `qty: ${quantity}`;
-    priceElement.textContent = `${item.FinalPrice}`;
+    priceElement.textContent = `₱${parseFloat(item.FinalPrice).toFixed(2)}`;
 
     return li.outerHTML;
   }
@@ -53,10 +53,10 @@ export default class ShoppingCart {
 }
 
 export function updateCartCount() {
-    const cartItems = getLocalStorage("so-cart") || [];
-    const count = cartItems.reduce((total, item) => total + (item.Quantity || 1), 0);
-    const cartCountElement = qs(".cart-count");
-    if (cartCountElement) {
-        cartCountElement.textContent = count;
-    }
+  const cartItems = getLocalStorage("so-cart") || [];
+  const count = cartItems.reduce((total, item) => total + (item.Quantity || 1), 0);
+  const cartCountElement = qs(".cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = count;
+  }
 }

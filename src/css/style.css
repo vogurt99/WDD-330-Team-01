@@ -464,3 +464,12 @@ footer {
 .checkout-submit:hover {
   background-color: var(--tertiary-color);
 }
+
+.alert-message {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #f5c2c7;
+  font-weight: bold;
+}

@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -74,7 +74,6 @@ export default class CheckoutProcess {
         }
     }
 
-
     calculateOrderTotal() {
         this.tax = this.itemTotal * 0.06;
         this.shipping = this.list.length > 0 ? 10 + (this.list.length - 1) * 2 : 0;
@@ -109,14 +108,23 @@ export default class CheckoutProcess {
         };
 
         try {
-            const response = await fetch(
-                "https://wdd330-backend.onrender.com/checkout",
-                options
-            );
+            const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
             const data = await response.json();
-            console.log("Server response:", data);
+
+            if (response.ok) {
+                setLocalStorage(this.key, []);
+                window.location.href = "/checkout/success.html";
+            } else {
+                let errorMessage = "Something went wrong with your order.";
+                if (data && typeof data === "object") {
+                    errorMessage = Object.values(data).join(", ");
+                }
+                alertMessage(errorMessage);
+            }
+
             return data;
         } catch (err) {
+            alertMessage("Checkout failed. Please try again.");
             console.error("Checkout failed:", err);
         }
     }
