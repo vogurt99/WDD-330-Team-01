@@ -1,4 +1,5 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { updateCartCount } from "./ShoppingCart.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -42,6 +43,14 @@ export default class ProductDetails {
     }
 
     setLocalStorage("so-cart", cart);
+
+    updateCartCount();
+
+    const cartIcon = document.querySelector(".cart-icon");
+    if (cartIcon) {
+      cartIcon.classList.add("cart-animate");
+      setTimeout(() => cartIcon.classList.remove("cart-animate"), 400);
+    }
   }
 
 
