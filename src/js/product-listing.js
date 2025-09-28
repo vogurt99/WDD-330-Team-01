@@ -17,3 +17,31 @@ loadHeaderFooter().then(() => {
 });
 
 myList.init();
+
+const modal = qs("#quick-view-modal");
+const closeModal = qs(".close");
+
+closeModal.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+listElement.addEventListener("click", async (event) => {
+  if (event.target.matches(".quick-view")) {
+    const productId = event.target.dataset.id;
+    const product = await dataSource.findProductById(productId);
+    const modalProductDetails = qs("#modal-product-details");
+    modalProductDetails.innerHTML = `
+      <h3>${product.Name}</h3>
+      <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
+      <p>${product.DescriptionHtmlSimple}</p>
+      <p>Price: $${product.FinalPrice}</p>
+    `;
+    modal.style.display = "block";
+  }
+});

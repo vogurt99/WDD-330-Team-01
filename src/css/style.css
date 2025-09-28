@@ -313,6 +313,28 @@ button {
   padding: 2px;
 }
 
+/* Style Category Images */
+#categories img {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+#categories {
+  display: flex;
+  justify-content: space-around;
+}
+
+#categories li {
+  list-style-type: none;
+}
+
+#categories a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
