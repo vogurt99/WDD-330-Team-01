@@ -297,7 +297,7 @@ button {
 }
 
 /* Style newsletter */
-#newsletter {
+.signupForms {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -306,12 +306,20 @@ button {
   border: 1px solid var(--light-grey);
 }
 
-#newsletter h2 {
+.signupForms h2 {
   text-align: center;
 }
 
-#newsletter input {
+.signupForms input {
   padding: 2px;
+}
+
+/*Create Account Heading*/
+#createHeading {
+  text-align: center;
+  font-family: "Knewave", system-ui;
+  color: #525b0f;
+  font-size: 30px;
 }
 
 @media screen and (min-width: 500px) {
@@ -329,7 +337,7 @@ button {
     grid-template-columns: 150px auto 15%;
   }
 
-  #newsletter {
+  .signupForms {
     padding: 2em 15em 2em 15em;
   }
 }

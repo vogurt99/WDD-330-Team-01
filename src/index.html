@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sleep Outside | Home</title>
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -60,7 +63,7 @@
         </li>
       </ul>
     </section>
-    <form id="newsletter">
+    <form class="signupForms" id="newsletter">
       <h2>Sign Up for our newsletter!</h2>
       <label for="fname">First</label>
       <input id="fname" name="fname" type="text" required>
@@ -70,6 +73,18 @@
       <input type="email" name="email" id="email" required>
       <button type="submit" id="signUp">Sign Up</button>
     </form>
+      <h2 id="createHeading">OR EVEN BETTER</h2>
+    <form class="signupForms" id="createAccount">
+      <h2>Create an account with us!</h2>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" required>
+      <label for="accountEmail">Email</label>
+      <input type="email" name="accountEmail" id="accountEmail" required>
+      <button type="submit" id="signUp">Create</button>
+    </form>
+    
   </main>
 
   <footer id="main-footer">
