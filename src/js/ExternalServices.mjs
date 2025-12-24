@@ -1,5 +1,6 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
+/*Convert to JSON*/
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -27,3 +28,4 @@ export default class ExternalServices {
     }
   }
 }
+
